@@ -1,0 +1,126 @@
+<!doctype html>
+
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org"
+				   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <title>네이버 로그인</title>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<script>
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId: "AQv3PITH4F6tGk6hnh56", 
+		callbackUrl: "http://localhost:8181/login/oauth2/naver", 
+		isPopup: false,
+		callbackHandle: true
+	});
+	naverLogin.init();
+
+	window.addEventListener('load', function () {
+	naverLogin.getLoginStatus(function (status) {
+
+	if (status) {
+		/* console.log(naverLogin.user); */
+		
+		var email = naverIdLogin.user.getEmail();
+		var id = naverIdLogin.user.getId();
+	
+
+		$.ajax({
+			type: 'post',
+			url: 'naverSave',
+			data: {'n_email':email, 'n_id':id },
+			dataType: 'text',
+			success: function(result) {
+				if(result=='ok') {
+					console.log('성공')
+					location.replace("http://localhost:8181/") 
+				} else if(result=='no') {
+					console.log('실패')
+					location.replace("http://localhost:8181/crud/login")
+				}
+			},
+			error: function(result) {
+				console.log('오류 발생')
+			}
+		})
+
+	} else {
+		console.log("callback 처리에 실패하였습니다.");
+	}
+	});
+});
+</script>
+
+
+<!-- 
+
+    <script type="text/javascript">
+    
+          var naver_id_login = new naver_id_login("AQv3PITH4F6tGk6hnh56", "http://localhost:8181/login/oauth2/naver");
+          // 접근 토큰 값 출력
+          alert(naver_id_login.oauthParams.access_token);
+          
+          // 네이버 사용자 프로필 조회
+          naver_id_login.get_naver_userprofile("naverSignInCallback()");
+          
+          // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+          function naverSignInCallback() {
+            var id = naver_id_login.getProfileData('id')+"@n";
+            var nickname = naver_id_login.getProfileData('name');
+            //var email = naver_id_login.getProfileData('email');
+            
+            $.ajax({
+                 url : "/user/json/checkDuplication/"+id,
+                     headers : {
+                     "Accept" : "application/json",
+                     "Content-Type" : "application/json"
+                  },
+                  success : function(idChk){
+                      
+                     if(idChk==true){ //DB에 아이디가 없을 경우 => 회원가입
+                          console.log("회원가입중...");
+                          $.ajax({
+                              url : "/user/json/addUser",
+                              method : "POST",
+                              headers : {
+                                "Accept" : "application/json",
+                                "Content-Type" : "application/json"
+                              },
+                              data : JSON.stringify({
+                                  userId : id,
+                                userName : nickname,
+                                  password : "naver123",
+                              }),
+                              success : function(JSONData){
+                                 alert("회원가입이 정상적으로 되었습니다.");
+                                 window.close();
+                                 top.opener.location="/user/snsLogin/"+id;
+                              }
+                          })
+                      }
+                      if(idChk==false){ //DB에 아이디가 존재할 경우 => 로그인
+                          console.log("로그인 중...");
+                          window.close();
+                          top.opener.location="/user/snsLogin/"+id;
+                      }
+                  }
+            })
+            
+          }
+    </script>
+    
+    <form name="defaultForm">
+    </form>
+    
+    
+    --> 
+    
+</body>
+</html>

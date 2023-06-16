@@ -1,0 +1,91 @@
+<html layout:decorate="~{layout}">
+<div  layout:fragment="content" class="container">
+
+	
+	<br>
+	
+	<div id="itemArray">
+
+	
+
+		<div>
+			상품검색 추가해보기 (조건 = 작성자 , 제품명(keyword) , 가격 등등)
+			
+		
+			<a id="write" th:href="@{/product/create}">상품판매하기</a>
+		</div>
+	
+		<div>
+			<table>
+				<tbody>
+					<tr th:each="product, loop: ${paging}">
+					
+						<div th:href="@{|/product/detail/${product.id}|}" id="product">
+							<a id="imageSize">
+								<img  src=""/>
+							</a>
+							<div id="productNameSetup">						
+								<a th:href="@{|/product/detail/${product.id}|}" id="productName">
+									<span th:text="${product.productName}"></span>
+								</a>
+							</div>
+							<div >
+								<a th:href="@{|/product/detail/${product.id}|}" id="productPrice">
+									판매가 : <span th:text="${product.productPrice} + 원"></span>
+								</a>						
+							
+							</div>
+							
+							<div>
+								<a th:href="@{|/product/detail/${product.id}|}" id="author">
+									판매자 : <span th:text="${product.author.name}"></span>
+								</a>
+							</div>
+						</div>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+	
+	</div>
+
+	<div id="productPaging">
+		 <!-- 페이징처리 시작 -->
+	    <div id="paging" th:if="${!paging.isEmpty()}">
+	        <ul>
+	
+	       		
+	            <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+	                <a th:href="@{|?page=${paging.number-1+1}|}">
+	                    <span>이전</span>
+	                </a>
+	            </li>
+	            
+	            
+	            
+	            
+	            <li th:each="page: ${#numbers.sequence(1, paging.totalPages)}" 
+		            th:if="${page >= paging.number-5 + 1 and page <= paging.number+5 + 1}" 
+		            th:classappend="${page == paging.number} ? 'active'">
+		            <a th:text="${page}" th:href="@{|?page=${page}|}"></a>
+        		</li>
+	            
+	            
+	            
+	            <li th:classappend="${!paging.hasNext} ? 'disabled'">
+	                <a th:href="@{|?page=${paging.number+1+1}|}">
+	                    <span>다음</span>
+	                </a>
+	            </li>
+	            
+	            
+	        </ul>
+	    </div>
+	    <!-- 페이징처리 끝 -->
+
+	</div>
+
+
+
+</div>
+</html>

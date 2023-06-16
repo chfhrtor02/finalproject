@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org"
+				   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+<meta charset="UTF-8">
+
+<link th:href ="@{/css/main.css}" rel="stylesheet" />
+
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="popup_login">
+    	<a href="#">메인페이지로이동</a>
+        <form name="zb_login" id="zb_login" method="post" action="#">
+        <input type="hidden" name="s_url" value="%2F" />
+	        <ul class="login_box">
+	            <li class="log_id">
+	            	<input placeholder="아이디 입력" type="text" name="user_id" id="user_id" maxlength="20" />
+	            	<input placeholder="비밀번호 입력" type="password" name="password" id="password" maxlength="20" />
+	            </li>
+	            <li class="log_btn"><span class="logtext jBtnLogin">로그인</span></li></a>
+	            <li class="auto_log"><label><input type="checkbox" id="aLogin" name="auto_login" value=1 /><span class="autol">자동 로그인</span></label></li>
+	            <li class="log_btn_02">
+	            	<a href="#">회원가입</a> |
+                    <a href="#">아이디 찾기</a> |
+                    <a href="#">비밀번호 찾기</a> |
+                    <a href="#">소셜회원탈퇴</a>
+	            	<div class="sns_login">
+	            		<a href="#"><img src="#"><span>카카오 로그인</span></a>
+						<a href="#"><img src="#"><span>페이스북 로그인</span></a>
+                        <a href="#"><img src="#"><span>네이버 로그인</span></a>
+                                                
+                        <a href="#"><img src="#"><span>구글 로그인</span></a>
+                                                
+
+	            	</div>
+
+	            </li>
+                <li class="lg_banner"></li>
+	           <p class="backs">
+                 	<a href="/">
+                 	  <span class="back">되돌아가기</span>
+                 	</a>
+                 </p>
+	        </ul>
+        </form>
+        <p class="log_b"><a href='/'></a></p>
+    </div>
+
+<!-- 	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#user_id").keypress(function (e) {;
+    	    if (e.which == 13){
+    	    	zb_login_check_submit();
+    	    }
+    	});
+		$("#password").keypress(function (e) {;
+    	    if (e.which == 13){
+    	    	zb_login_check_submit();
+    	    }
+    	});
+		$('#user_id').focus();
+	});
+
+    function zb_login_check_submit() {
+        var $user_id = document.getElementById('user_id');
+        var $password = document.getElementById('password');
+
+        if ($('#user_id').val() === "") {
+            alert("아이디를 입력해주십시요");
+            $('#user_id').focus();
+            return false;
+        }
+        if ($('#password').val() === "") {
+            alert("비밀번호를 입력해주십시요");
+            $('#password').focus();
+            return false;
+        }
+        $('#zb_login').submit();
+    }
+	</script>
+ -->
+
+
+
+
+</body>
+</html>

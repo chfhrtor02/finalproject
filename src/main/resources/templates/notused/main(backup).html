@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org"
+				   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>MainPage</title>
+	
+	 
+    
+    <!-- 자체 CSS설정 -->
+    <link th:href ="@{/css/main.css}" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#loginBtn").click(function () {
+                var id = $("#id").val();
+                var pw = $("#pw").val();
+                $.ajax({
+                    url: "/login",
+                    type: "POST",
+                    data: {
+                        sessId: id,
+                        sessPw: pw
+                    },
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function (e) {
+                        console.log(e);
+                        alert("로그인에 실패하였습니다. 다시 시도해주세요.");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+
+
+
+ <!--  TOP MENU  -->
+	<header>		
+			<span class="material-symbols-outlined">quiet_time</span>MAVER
+	</header>
+	<div id="menu">
+        <ul>
+            <!--  HOME  -->
+            <li>
+                <a href="#">HOME</a>
+            </li>
+
+            <!--  ABOUT  -->
+            <li>
+                <a href="#">ABOUT</a>
+            </li>
+
+            <!--  Unknown  -->
+            <li>
+                <a href="#">MY CAFE</a>
+                <ul>
+                    <li><a href="#">즐겨찾는 카페</a></li>
+                    <li><a href="#">이웃 카페</a></li>
+                    <li><a href="#">운영 카페</a></li>
+                </ul>
+            </li>
+
+            <!--  Board  -->
+            <li>
+                <a href="#">BOARD</a>
+                <ul>
+                    <li><a href="#">NOTICE</a></li>
+                    <li><a href="#">FREEBOARD</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div> <!-- END 'TOP MENU'-->
+    
+
+    <!--  CONTENTS  -->
+    <div id="contents">
+        <div id="notice">NOTICE<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > notice 끌어오기
+
+        </div>
+
+
+        <div id="freeboard">FREEBOARD<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > freeboard 끌어오기
+
+        </div>
+
+
+        <div id="login">
+        
+        
+    		<!-- 로그인 성공후 -->
+		    <div sec:authorize="isAuthenticated()">
+
+	            <span th:text="*{sess}" ></span> 님, 환영합니다.<br>
+
+	            <div id="afterLogin">
+	                <a th:href="@{/member/update}">회원정보 수정</a>&nbsp;|&nbsp;
+	                <a th:href="@{/logout}">로그아웃</a><br><br>
+	                <a th:href="@{/member/delete}" onclick="return confirm('정말로 탈퇴하시겠습니까?')">회원탈퇴</a>
+	            </div>
+		        
+		    </div>
+		
+		
+			<!--  로그인 전  -->
+		    <div sec:authorize="isAnonymous()">
+
+				<form th:action="@{/login}" th:object="${sess}" th:method="post">
+			        <div id="beforeLogin">
+			            <input type='text' th:name="id" th:field="*{id}" placeholder="아이디"/><br>
+			            <input type='password' th:name="pw" th:field="*{pw}" placeholder="패스워드"/><br>
+			            <input type="submit" id="loginBtn" name="submit" value="로그인"/><br>
+		
+			            <div>
+			                <a href="findId.html" th:href="@{/view/findId}">아이디 찾기</a>&nbsp;|&nbsp;
+			                <a th:href="@{/view/findPw}">비밀번호 찾기</a>&nbsp;|&nbsp;
+			                <a th:href="@{/view/register}">회원가입</a><br>
+			            </div>
+		        	</div>
+		        </form>
+		        	
+		    </div>
+		    
+		</div>
+
+        <div id="unknown1">Unknown1<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown1 끌어오기
+
+        </div>
+
+
+        <div id="unknown2">Unknown2<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown2 끌어오기
+
+        </div>
+       
+
+    </div> <!--  END 'CONTENTS'  -->
+
+
+
+    <!--  FOOTER  -->
+    <div id="footer">
+        하아아아아단!!!!
+
+    </div> <!--  END 'FOOTER'  -->
+
+
+</body>
+</html>

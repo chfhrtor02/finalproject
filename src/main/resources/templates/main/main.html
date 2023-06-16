@@ -1,0 +1,156 @@
+<html layout:decorate="~{layout}">
+<div  layout:fragment="content" class="container">
+
+   <!--  CONTENTS  -->
+    <div id="contents">
+    
+        <div id="notice">
+			<div id="slideshow-container">
+				<img class="slide" src="/image/titleimage1.jpg" alt="image1">
+				<img class="slide" src="/image/titleimage2.jpg" alt="image2">
+				<img class="slide" src="/image/titleimage3.jpg" alt="image3">
+			</div>
+        </div>
+
+
+        <div id="freeboard">
+        	
+        	
+        	<div id="freeboardname">자유게시판</div>
+ 
+        	<table>
+			    <thead>
+			        <tr>
+			            <th></th>
+			        </tr>
+			    </thead>
+			    
+			    <tbody>
+			      	<tr th:each="question, loop : ${paging}">
+			            <td style="width:550px">
+			             	<a id="linkboardlist" th:href="@{|/board/detail/${question.id}|}" th:text="${question.subject}"></a>
+			             	<!-- 댓글 카운트 -->
+		        			<span style="color:skyblue; font-size: 10px;"
+		            		  th:if="${#lists.size(question.answerList) > 0}" 
+	                       	  th:text="${#lists.size(question.answerList)}">
+	                   		</span>
+			             </td>
+			             
+		        		<td>
+		        			<!-- 작성자 -->
+		        			<span id="linkboardname" th:if="${question.author != null}" th:text="${question.author.name}"></span>
+		        		</td>
+			        </tr>
+			    </tbody>
+			</table>
+        	
+        	
+			
+        </div>
+
+		
+        <div id="login">
+        <br><br>
+		  
+    		<a id="loginTab" sec:authorize="isAnonymous()" th:href="@{/crud/login}">LOGIN
+    			<div id=loginOther>
+			    	<a th:href="@{/crud/register}">회원가입</a> ||
+				    <a href="">아이디찾기</a>	||
+				    <a href="">비밀번호찾기</a>
+		    	</div>
+    		</a>
+
+
+
+    		<a id="loginTab" sec:authorize="isAuthenticated()" th:href="@{/crud/logout}">
+				
+				
+				<!-- <span th:text="${#authentication.name}"></span>님 환영합니다.
+  				<span th:text="${#authentication.principal.attributes['name']}"></span>님 환영합니다. -->
+  				
+<!--  				<div th:if="${#authentication.principal instanceof T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)}">
+				  	<span th:text="${#authentication.principal.attributes['name']}"></span>님 환영합니다.
+				</div>
+				
+				<div th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.User)}">
+				    <span th:text="${#authentication.principal.username}"></span>님 환영합니다.
+				</div> -->
+				
+				<div th:if="${#authentication.principal instanceof T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)}">
+					<span th:text="${#authentication.principal.attributes['name']}"></span>
+					<span th:if="${#authentication.principal.attributes['kakao_account']}" th:text="${#authentication.principal.attributes['kakao_account']['profile']['nickname']}"></span>
+			    	님 환영합니다.
+				</div>
+				
+				<div th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.User)}">
+					<span th:text="${#authentication.principal.username}"></span>님 환영합니다.
+				</div>
+ 
+ 
+ 
+ 
+				
+				<div id="afterLogin">
+					 <a th:href="@{/crud/update}">개인정보수정</a> ||
+					 <a th:href="@{/crud/delete}">회원탈퇴</a>
+				</div>
+			</a>
+		 		 
+	    	<br>
+	    	
+		</div>
+
+        <div id="unknown1">
+        	<div id="unknownTitle">중고장터</div>
+			<div id="itemArray">
+	
+		
+				<table>
+					
+					<tr  th:each="product  : ${product}">
+						
+						<div id="product">
+							<a th:href="@{|/product/detail/${product.id}|}" id="imageSize">
+								<img  src=""/>
+							</a>
+							<div id="productNameSetup">						
+								<a th:href="@{|/product/detail/${product.id}|}" id="productName">
+									<span th:text="${product.productName}"></span>
+								</a>
+							</div>
+							<div >
+								<a th:href="@{|/product/detail/${product.id}|}" id="productPrice">
+									판매가 : <span th:text="${product.productPrice} + 원"></span>
+								</a>						
+							
+							</div>
+							
+							<div>
+								<a th:href="@{|/product/detail/${product.id}|}" id="author">
+									판매자 : <span th:text="${product.author.name}"></span>
+								</a>
+							</div>
+						</div>
+						
+					</tr>
+					
+				</table>
+				
+	
+			</div>
+
+        </div>
+
+
+        <div id="unknown2"><br><br><br>
+
+			
+			
+        </div>
+       
+
+    </div> <!--  END 'CONTENTS'  -->
+
+</div>
+</html>    
+    

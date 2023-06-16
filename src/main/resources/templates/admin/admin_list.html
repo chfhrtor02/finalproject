@@ -1,0 +1,30 @@
+<html layout:decorate="~{layout}">
+	
+	<div id="board" layout:fragment="content" >
+	
+	관리자 페이지 
+	<table>
+		<thead>
+			<tr>
+				<th>이름</th>
+			
+			</tr>
+		
+		</thead>
+		<br><br><br><br><br>
+		
+		<tbody>
+			<tr th:each="member  : ${member}">
+			
+				<td>
+					<a th:text="${member.name}"></a>
+				</td>
+				
+			</tr>	
+		</tbody>
+	
+	</table>
+	
+	</div>
+	
+</html>

@@ -1,0 +1,208 @@
+e<!doctype html>
+<html lang="ko-kr" >
+
+<head>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+ -->    <link rel="stylesheet" type="text/css" th:href ="@{/css/layout/layout.css}" />
+   		<link rel="stylesheet" type="text/css" th:href ="@{/css/board/board.css}" />
+		<link rel="stylesheet" type="text/css" th:href ="@{/css/register/register.css}" />
+		<link rel="stylesheet" type="text/css" th:href ="@{/css/main/main.css}" />
+		<link rel="stylesheet" type="text/css" th:href ="@{/css/login/login.css}" />
+		<link rel="stylesheet" type="text/css" th:href ="@{/css/product/product_list.css}" />
+
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+	<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+	
+	<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	
+    <title>Final Project</title>
+</head>
+<body>
+
+
+
+	<!-- 네비게이션바 -->
+	<nav th:replace="~{layout/header :: headerFragment}"></nav>
+
+
+
+	<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+	<th:block layout:fragment="content"></th:block>  
+
+	<!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+
+	<!-- 자바스크립트 Start -->
+	<th:block layout:fragment="script"></th:block>
+	<!-- 자바스크립트 End -->
+
+<!-- CK editor  -->
+<script>
+    ClassicEditor
+        .create(document.querySelector('#textarea_ck_test'),
+    	    {
+    		language: 'ko',
+			ckfinder: {
+				uploadUrl: 'http://localhost:8181/image/upload',  //url
+				// uploadUrl: 'c:\image',  //url
+			}
+    	  } )
+  		.then( editor => {
+  			window.editor = editor;
+  		} )
+  		.catch( error => {
+  			console.error( error );
+  		} );	
+</script>
+
+
+
+<script>
+    ClassicEditor
+      .create(document.querySelector('#textarea_ck_readOnly'), {
+        language: 'ko',
+        toolbar: [], 
+        readOnly: true, 
+      })
+      .then(editor => {
+        window.editor = editor;
+        editor.enableReadOnlyMode("textarea_ck_readOnly")
+        editor.ui.view.toolbar.element.style.display = 'none'; 
+      })
+      .catch(error => {
+        console.error(error);
+      });
+</script>
+
+
+<!-- 이미지 미리보기 -->
+<script>
+    $(document).ready(function() {
+        $("#productIMG").change(function() {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(data) {
+                    $("#previewImage").attr("src", data.target.result).width(200);
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+</script>
+
+
+<script>
+  // 슬라이드 인덱스 변수
+  let slideIndex = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  // 슬라이드 보여주는 함수
+  function showSlides() {
+    const slides = document.getElementsByClassName('slide');
+    
+    // 모든 슬라이드를 숨깁니다
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+    
+    // 현재 슬라이드를 보여줍니다
+    slides[slideIndex].style.display = 'block';
+    
+    // 슬라이드 인덱스를 증가시킵니다
+    slideIndex++;
+    
+    // 마지막 슬라이드면 인덱스를 0으로 초기화합니다
+    if (slideIndex >= slides.length) {
+      slideIndex = 0;
+    }
+    
+    // 3초마다 슬라이드를 변경합니다
+    setTimeout(showSlides, 3000);
+  }
+
+  // 슬라이드쇼 시작
+  showSlides();
+
+  // 터치 시작 위치 기록
+  function touchStart(event) {
+    touchStartX = event.touches[0].clientX;
+  }
+
+  // 터치 종료 위치 기록 및 슬라이드 이동 처리
+  function touchEnd(event) {
+    touchEndX = event.changedTouches[0].clientX;
+    handleSwipe();
+  }
+
+  // 슬라이드 이동 처리
+  function handleSwipe() {
+    const slides = document.getElementsByClassName('slide');
+    
+    if (touchEndX < touchStartX) {
+      // 왼쪽으로 스와이프 - 다음 슬라이드 보여주기
+      slideIndex++;
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+    } else if (touchEndX > touchStartX) {
+      // 오른쪽으로 스와이프 - 이전 슬라이드 보여주기
+      slideIndex--;
+      if (slideIndex < 0) {
+        slideIndex = slides.length - 1;
+      }
+    }
+
+    // 현재 슬라이드 보여주기
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+    slides[slideIndex].style.display = 'block';
+  }
+
+  // 터치 이벤트 리스너 등록
+  const slideshowContainer = document.querySelector('.slideshow-container');
+  slideshowContainer.addEventListener('touchstart', touchStart);
+  slideshowContainer.addEventListener('touchend', touchEnd);
+  
+</script>
+
+
+
+<!-- <script>
+    // 슬라이드 인덱스 변수
+    let slideIndex = 0;
+    // 슬라이드 보여주는 함수
+    function showSlides() {
+      const slides = document.getElementsByClassName('slide');
+      // 모든 슬라이드를 숨깁니다
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+      }
+      // 현재 슬라이드를 보여줍니다
+      slides[slideIndex].style.display = 'block';
+      // 슬라이드 인덱스를 증가시킵니다
+      slideIndex++;
+      // 마지막 슬라이드면 인덱스를 0으로 초기화합니다
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+      // 2초마다 슬라이드를 변경합니다
+      setTimeout(showSlides, 2000);
+    }
+    // 슬라이드쇼 시작
+    showSlides();
+</script> -->
+
+
+</body>
+</html>

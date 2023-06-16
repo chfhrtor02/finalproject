@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form th:action="@{/crud/delete}" th:object="${deleteMemberForm}" method="post">
+	<input type="text" th:field="*{userId}" />
+	<button type="submit" name="userId" >탈퇴하기</button>
+</form>
+</body>
+</html>

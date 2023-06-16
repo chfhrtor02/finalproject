@@ -1,0 +1,252 @@
+@charset "UTF-8";
+/* --------------- 공통설정 --------------- */
+
+
+
+
+#board {
+	
+	width : 1000px;
+	margin : auto;
+}
+
+
+
+#boardNO {
+	
+	width : 100px;
+	
+}
+
+#boardSubject {
+	
+	width : 550px;
+	
+}
+
+#userName {
+	
+	width : 100px;
+	
+}
+
+#createDate {
+	width : 250px;
+}
+
+
+#boardList {
+	
+	height: 30px;
+	text-align: center;
+	
+}
+
+
+#write {
+
+	border  : 1px solid ;
+	
+}
+
+
+#paging {
+
+	width : 1000px;
+	height: 30px;
+	list-style-type : none;
+	text-align: center;
+	outline: 10px ;
+	
+}
+
+#paging > ul {
+	
+	text-align: center;	
+	
+}
+
+#paging > ul > li {
+	
+	display : inline;
+	text-align: center;	
+	padding : 0 20px 0 20px;
+}
+
+
+#contentTitle {
+	
+	width : 1000px;
+	margin : auto;
+	text-align: center;
+	
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+
+
+#boardSubject , #boardContent , #replyContent {
+	
+	margin : auto;
+	
+}
+
+
+#writeSubject {
+	
+	width : 1000px;
+	height : 30px;
+	margin : auto;
+	text-align: center;
+}
+
+#writeSubject > input {
+	
+	width : 950px;
+	
+}
+
+#writeContent {
+	
+	width : 1000px;
+	margin : auto;
+	text-align: center;
+}
+
+
+.ck-editor__editable {
+	height: 550px; 
+}
+
+#writeSubmit {
+	width : 1000px;
+	margin :auto;
+	text-align: right;
+}
+
+#writeSubmit > input {
+	
+	width : 300px;
+	
+}
+
+#editReplyTitle {
+	
+	margin : auto;
+	width : 1000px;
+	text-align: center;
+	
+	margin-top: 50px;
+}
+
+
+#editReply {
+	
+	width : 1000px;
+	margin : auto;
+	text-align: right;
+}
+
+#editReply > textarea{
+	
+	resize : none;
+	margin-top : 30px;
+	margin-bottom: 10px;
+	width : 1000px;
+	
+}
+
+#editReply > input {
+	
+	width : 300px;
+	
+}
+
+
+#boardContent {
+	
+	margin-top: 30px;
+	width: 1000px;
+	height: 450px;
+	font-size: 15px;
+	border : 1px solid black;
+	
+}
+
+
+#writeUser {
+	
+	margin : auto;
+	font-size : 13px;
+	width : 1000px;
+	text-align: right;
+	
+}
+
+
+
+#editWrite {
+	justify-content: space-between;
+	margin : auto;
+	font-size : 15px;
+	width : 1000px;
+	
+}
+
+#editWrite > span {
+	font-size: 30px;
+	
+}
+
+#editWrite > div {
+	display: inline-block;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+
+
+
+
+#writeDate {
+	margin : auto;
+	font-size : 13px;
+	width : 1000px;
+	text-align: right;
+	
+}
+
+
+
+
+#replyContent {
+
+	font-size: 12px;
+	width : 1000px;
+	
+}
+
+
+#replyDetail {
+	
+	border-left : 100px;
+	width : 1000px;
+}
+
+#replyDetailTime {
+	
+	font-size: 8px;
+	
+}
+
+#replyTextArea {
+	
+	text-align: center;
+}
+
+#replyWrite{
+	
+	resize :none;	
+	width: 870px;
+}

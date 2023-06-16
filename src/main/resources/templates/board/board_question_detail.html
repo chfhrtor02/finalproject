@@ -1,0 +1,203 @@
+<html layout:decorate="~{layout}">
+	<div layout:fragment="content" >	
+		<!-- 게시판 제목호출 -->
+		<br>
+		<br>
+		 
+		
+		<div id="editWrite">
+			
+			<span th:text="${question.subject}"></span>
+			
+			
+			<!-- 정렬 아직 못했음  -->
+			<div>
+				<!-- 수정 -->
+				<!-- 이거다!!!! -->
+				<a th:href="@{/board/modify/{id}(id=${question.id})}" sec:authorize="isAuthenticated()"
+				   th:if="${question.author != null and 
+				          ((#authentication instanceof T(org.springframework.security.authentication.UsernamePasswordAuthenticationToken) and 
+				          #authentication.principal.username == question.author.userId) or
+				          (#authentication instanceof T(org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken) and
+				          #authentication.principal.attributes['email'] == question.author.email))}"
+				   th:text="수정">
+				</a>
+				
+				
+				
+				
+				
+				
+				<!-- <div>
+					<a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+	   					th:if="${question.author != null and 
+	   					(#authentication.principal.username == question.author.userId)}"
+	   					th:text="수정">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+	   					th:if="${question.author != null and 
+	   					(#authentication.principal.attributes['email'] == question.author.email)}" 
+	   					th:text="수정">
+					</a>
+				</div>
+ -->
+
+				<!-- <a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+				   th:if="${question.author != null and 
+				   		    #authentication.getPrincipal().getClass().getName() == 'UsernamePasswordAuthenticationToken' 
+				            and 
+				            #authentication.getPrincipal().getUsername() == question.author.userId}"
+				   th:text="수정">
+				</a>
+
+				<a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+				   th:if="${question.author != null and 
+					       (#authentication.getPrincipal() instanceof T(org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken))
+					       and #authentication.getPrincipal().getAttributes().get('email') == question.author.email}"
+				   th:text="수정">
+				</a>
+ -->
+				
+				
+				<!-- 삭제 -->
+				<a class="delete" href="javascript:void(0);" th:data-uri="@{|/board/delete/${question.id}|}"
+					sec:authorize="isAuthenticated()"
+					  th:if="${question.author != null and 
+				          ((#authentication instanceof T(org.springframework.security.authentication.UsernamePasswordAuthenticationToken) and 
+				          #authentication.principal.username == question.author.userId) or
+				          (#authentication instanceof T(org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken) and
+				          #authentication.principal.attributes['email'] == question.author.email))}"
+					th:text="삭제">
+				</a>
+				
+				<!-- 수정 -->
+	            <!-- <a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()" sec:authentication="principal.authrities"
+	            	th:if="${question.author != null and 
+	            	#authentication.getPrincipal().getUsername() == question.author.userId}"
+	            	th:text="수정">
+	            </a> -->
+	            
+	           
+	            <!-- 삭제 -->
+	        	 <!-- <a class="delete" href="javascript:void(0);" th:data-uri="@{|/board/delete/${question.id}|}"
+				   sec:authorize="isAuthenticated()"
+				   th:if="${question.author != null and #authentication.getPrincipal().getClass().getSimpleName() == 'UsernamePasswordAuthenticationToken' 
+				          and #authentication.getPrincipal().getUsername() == question.author.userId}"
+				   th:text="삭제">
+				</a> -->
+	        	 
+            </div>  
+        </div>    
+		
+		
+		 
+		 
+		 
+		 
+		 <div >
+		 	<div >
+				<!-- 게시판 내용 호출 -->
+				<div id="writeContent">
+					<textarea id="textarea_ck_readOnly" th:text="${question.content}" readonly="readonly"></textarea>	 	
+		 		</div>
+		 		
+		 		<!-- 작성자 호출 -->
+		 		<div id="writeUser">
+		 			<span th:if="${question.author != null}" th:text="${question.author.name}"></span>
+			 		<!-- 작성시간 호출 -->
+	                <span id="writeDate" th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></span>
+		 		</div>
+		 		
+		 	
+		 	</div>
+		 </div>
+		 
+ 		
+<!--             <a th:href="@{|/board/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+                th:if="${boardQuestionVO.author != null and #authentication.getPrincipal().getUsername() == boardQuestionVO.author.name}"
+                th:text="수정"></a>
+-->		
+        
+		 
+		 
+		 
+		<!-- 답변의 갯수 표시 -->
+	    <h5 id="replyContent"
+	        th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+	 
+	 
+	    <!-- 답변 반복 시작 -->
+	    <div id="replyContent" th:each="answer : ${question.answerList}">
+
+	        <div id="replyDetail">
+	        	
+	        	<!-- 댓글 내용 출력 -->
+	            <span th:text="${answer.content}"></span>
+	            <!-- 댓글 작성자 출력 -->
+	            <span th:if="${answer.author != null}" th:text="${answer.author.name}"></span>
+	            <!-- 댓글 작성시간 출력 -->
+	            <span id="replyDetailTime" th:text="${#temporals.format(answer.createTime, 'yyyy-MM-dd HH:mm')}"></span>
+	      
+	      
+	      
+	      		<!-- 댓글 수정 -->
+	        	<a th:href="@{|/reply/modify/${answer.id}|}" sec:authorize="isAuthenticated()"
+	                th:if="${question.author != null and 
+				          ((#authentication instanceof T(org.springframework.security.authentication.UsernamePasswordAuthenticationToken) and 
+				          #authentication.principal.username == question.author.userId) or
+				          (#authentication instanceof T(org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken) and
+				          #authentication.principal.attributes['email'] == question.author.email))}"
+	                th:text="수정"></a>    
+	                ||
+	            <!-- 댓글 삭제  -->    
+	            <a class="delete" href="javascript:void(0);" th:data-uri="@{|/reply/delete/${answer.id}|}"
+	                sec:authorize="isAuthenticated()"
+	                th:if="${question.author != null and 
+				          ((#authentication instanceof T(org.springframework.security.authentication.UsernamePasswordAuthenticationToken) and 
+				          #authentication.principal.username == question.author.userId) or
+				          (#authentication instanceof T(org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken) and
+				          #authentication.principal.attributes['email'] == question.author.email))}"
+	                th:text="삭제"></a>   
+	                
+	                
+	        </div>
+			
+	    </div>
+	    <!-- 답변 반복 끝  -->
+	    <br>
+	    <!-- 답변 작성 -->
+	    <div id="replyTextArea" >
+	    <form th:action="@{|/reply/create/${question.id}|}" th:object="${boardAnswerForm}" method="post" class="my-3">
+	        
+	        <div th:replace="~{board/board_form_error :: formErrorsFragment}" />   
+	        
+	        
+	        
+	        
+	        <label for="content">내용</label>
+	        <textarea id="replyWrite" sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="3"></textarea>
+	        <textarea id="replyWrite" sec:authorize="isAuthenticated()" th:field="*{content}" rows="3"></textarea>
+	        
+	        <input type="submit" value="답변등록" >
+   		
+   		</form>
+	    </div>
+	</div>
+	
+<script layout:fragment="script" type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org"
+				   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>MainPage</title>
+	
+	 
+    
+    <!-- 자체 CSS설정 -->
+    <link th:href ="@{/css/main.css}" rel="stylesheet" />
+
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+
+
+</head>
+<body>
+
+
+
+ <!--  TOP MENU  -->
+	<header>		
+			<span class="material-symbols-outlined">quiet_time</span>MAVER
+	</header>
+	<div id="menu">
+        <ul>
+            <!--  HOME  -->
+            <li>
+                <a href="#">HOME</a>
+            </li>
+
+            <!--  ABOUT  -->
+            <li>
+                <a href="#">ABOUT</a>
+            </li>
+
+            <!--  Unknown  -->
+            <li>
+                <a href="#">MY CAFE</a>
+                <ul>
+                    <li><a href="#">즐겨찾는 카페</a></li>
+                    <li><a href="#">이웃 카페</a></li>
+                    <li><a href="#">운영 카페</a></li>
+                </ul>
+            </li>
+
+            <!--  Board  -->
+            <li>
+                <a href="#">BOARD</a>
+                <ul>
+                    <li><a href="#">NOTICE</a></li>
+                    <li><a href="#">FREEBOARD</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div> <!-- END 'TOP MENU'-->
+    
+
+    <!--  CONTENTS  -->
+    <div id="contents">
+        <div id="notice">NOTICE<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > notice 끌어오기
+
+        </div>
+
+
+        <div id="freeboard">FREEBOARD<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > freeboard 끌어오기
+
+        </div>
+
+
+        <div id="login">
+        
+        	<a href="/view/loginPage">로그인하기 </a>
+		    
+		</div>
+
+        <div id="unknown1">Unknown1<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown1 끌어오기
+
+        </div>
+
+
+        <div id="unknown2">Unknown2<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown2 끌어오기
+
+        </div>
+       
+
+    </div> <!--  END 'CONTENTS'  -->
+
+
+
+    <!--  FOOTER  -->
+    <div id="footer">
+        하아아아아단!!!!
+
+    </div> <!--  END 'FOOTER'  -->
+
+
+</body>
+</html>

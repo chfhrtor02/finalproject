@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+
+#loginAction {
+	
+	text-align : center;
+	margin :  auto;
+	padding-top : 150px;
+	
+	
+}
+
+#loginButton {
+	
+	width: 300px;
+	height: 40px;
+}
+
+#naverLink {
+	
+
+	display: block;
+	text-align: center;
+	
+}
+
+#naverIMG {
+	
+	width: 2.2%;
+	
+}

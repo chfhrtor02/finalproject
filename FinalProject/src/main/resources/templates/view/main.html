@@ -1,0 +1,282 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>MainPage</title>
+	
+	 
+    
+    <!-- 자체 CSS설정 -->
+    <link th:href ="@{/css/main.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+
+
+
+ <!--  TOP MENU  -->
+	<header>		
+			<span class="material-symbols-outlined">quiet_time</span>MAVER
+	</header>
+	<div id="menu">
+        <ul>
+            <!--  HOME  -->
+            <li>
+                <a href="#">HOME</a>
+            </li>
+
+            <!--  ABOUT  -->
+            <li>
+                <a href="#">ABOUT</a>
+            </li>
+
+            <!--  Unknown  -->
+            <li>
+                <a href="#">MY CAFE</a>
+                <ul>
+                    <li><a href="#">즐겨찾는 카페</a></li>
+                    <li><a href="#">이웃 카페</a></li>
+                    <li><a href="#">운영 카페</a></li>
+                </ul>
+            </li>
+
+            <!--  Board  -->
+            <li>
+                <a href="#">BOARD</a>
+                <ul>
+                    <li><a href="#">NOTICE</a></li>
+                    <li><a href="#">FREEBOARD</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div> <!-- END 'TOP MENU'-->
+    
+
+    <!--  CONTENTS  -->
+    <div id="contents">
+        <div id="notice">NOTICE<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > notice 끌어오기
+
+        </div>
+
+
+        <div id="freeboard">FREEBOARD<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > freeboard 끌어오기
+
+        </div>
+
+
+        <div id="login"><br>
+
+        	<div th:switch="${sess}">
+        	
+			<div th:case="${sess != null}">
+			    <div id="afterLogin2">
+			    <span th:text="${sess.name} + ' 님 환영합니다'"></span><br>
+				    <div id="afterLogin">
+			        <a href="#">회원정보수정</a> | <a href="#" th:href="@{/logout}">로그아웃</a><br>
+			        <br><br><br>
+			        <a href="#">회원탈퇴</a>
+				    </div>
+			    </div>
+			</div>
+			<div th:case="${sess == null}">
+			    <form name="Login" action="LoginAction" method="post">
+			      아이디 : <input id="id" name="id" type='text' /> <br>
+			      패스워드 : <input id="pw" name="pw" type='password' /> <br>
+			      <input type="submit" id="loginBTN" name="LoginAction" value="로그인" /> <br>
+			      <div>
+			        <a th:href="@{/findID}">아이디 찾기</a> &nbsp; |
+			        <a th:href="@{/findPW}">비밀번호 찾기</a> &nbsp; |
+			        <a th:href="@{/register}">회원가입</a><br>
+			      </div>
+			    </form>
+			  </div>
+			</div>
+        	
+        	
+            
+        </div>	<!-- //login -->
+
+
+        <div id="unknown1">Unknown1<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown1 끌어오기
+
+        </div>
+
+
+        <div id="unknown2">Unknown2<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown2 끌어오기
+
+        </div>
+       
+
+    </div> <!--  END 'CONTENTS'  -->
+
+
+
+    <!--  FOOTER  -->
+    <div id="footer">
+        하아아아아단!!!!
+
+    </div> <!--  END 'FOOTER'  -->
+
+
+</body>
+=======
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>MainPage</title>
+	
+	 
+    
+    <!-- 자체 CSS설정 -->
+    <link th:href ="@{/css/main.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+
+
+
+ <!--  TOP MENU  -->
+	<header>		
+			<span class="material-symbols-outlined">quiet_time</span>MAVER
+	</header>
+	<div id="menu">
+        <ul>
+            <!--  HOME  -->
+            <li>
+                <a href="#">HOME</a>
+            </li>
+
+            <!--  ABOUT  -->
+            <li>
+                <a href="#">ABOUT</a>
+            </li>
+
+            <!--  Unknown  -->
+            <li>
+                <a href="#">MY CAFE</a>
+                <ul>
+                    <li><a href="#">즐겨찾는 카페</a></li>
+                    <li><a href="#">이웃 카페</a></li>
+                    <li><a href="#">운영 카페</a></li>
+                </ul>
+            </li>
+
+            <!--  Board  -->
+            <li>
+                <a href="#">BOARD</a>
+                <ul>
+                    <li><a href="#">NOTICE</a></li>
+                    <li><a href="#">FREEBOARD</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div> <!-- END 'TOP MENU'-->
+    
+
+    <!--  CONTENTS  -->
+    <div id="contents">
+        <div id="notice">NOTICE<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > notice 끌어오기
+
+        </div>
+
+
+        <div id="freeboard">FREEBOARD<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  board > freeboard 끌어오기
+
+        </div>
+
+
+        <div id="login"><br>
+
+        	<div th:switch="${sess}">
+        	
+			<div th:case="${sess != null}">
+			    <div id="afterLogin2">
+			    <span th:text="${sess.name} + ' 님 환영합니다'"></span><br>
+				    <div id="afterLogin">
+			        <a href="#">회원정보수정</a> | <a href="#" th:href="@{/logout}">로그아웃</a><br>
+			        <br><br><br>
+			        <a href="#">회원탈퇴</a>
+				    </div>
+			    </div>
+			</div>
+			<div th:case="${sess == null}">
+			    <form name="Login" action="LoginAction" method="post">
+			      아이디 : <input id="id" name="id" type='text' /> <br>
+			      패스워드 : <input id="pw" name="pw" type='password' /> <br>
+			      <input type="submit" id="loginBTN" name="LoginAction" value="로그인" /> <br>
+			      <div>
+			        <a th:href="@{/findID}">아이디 찾기</a> &nbsp; |
+			        <a th:href="@{/findPW}">비밀번호 찾기</a> &nbsp; |
+			        <a th:href="@{/register}">회원가입</a><br>
+			      </div>
+			    </form>
+			  </div>
+			</div>
+        	
+        	
+            
+        </div>	<!-- //login -->
+
+
+        <div id="unknown1">Unknown1<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown1 끌어오기
+
+        </div>
+
+
+        <div id="unknown2">Unknown2<br><br><br>
+
+            &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  unknown > unknown2 끌어오기
+
+        </div>
+       
+
+    </div> <!--  END 'CONTENTS'  -->
+
+
+
+    <!--  FOOTER  -->
+    <div id="footer">
+        하아아아아단!!!!
+
+    </div> <!--  END 'FOOTER'  -->
+
+
+</body>
+>>>>>>> origin/master
+</html>

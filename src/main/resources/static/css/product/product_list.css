@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+
+#itemArray {
+	
+	
+	width: 1000px;
+	height: 700px;
+	margin: auto;
+	
+}
+
+#product{
+
+	width : 200px;
+	height: 300px;
+	margin : 10px 15px 10px 15px; 
+	float: left;
+	padding: 10px;
+}
+
+
+#imageSize {
+	display :box ;
+	margin :auto ;
+	width : 190px;
+	height : 190px;
+	border-bottom : 1px solid black;	
+}
+
+#imageSize > img {
+	width : 190px;
+	height : 190px;
+	
+}
+
+
+
+#productName {
+	width : 200px;
+	height : 100px;
+}
+
+
+
+
+
+#greedProduct {
+	margin:0;
+    width: 1000px;
+    height: 425px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 212.5px 212.5px ;
+    grid-template-columns: 242.5px 242.5px 242.5px 242.5px;
+    grid-gap: 10px;
+	
+}
+
+	#productPhoto {
+	
+		grid-row : 1/3 ;
+        grid-column: 1/3 ;
+		padding :10px;
+		border : 1px solid black;
+	
+	
+	}
+
+	#productDetail1 {
+		
+		grid-row : 1/3 ;
+        grid-column: 3/5 ;
+		padding :10px;
+		border : 1px solid black;
+	
+	}
+	
+#productNameSetup > a > span{
+
+	height : 50px;
+	
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+
+}
+
+
+	
+	
+#productDetail2{
+	
+		
+	width: 1000px;
+	margin: auto;
+}
+
+
+#productDetailHead {
+	
+	float: left;
+	
+}
+
+
+#productPaging {
+	width : 1000px;
+	margin: auto;
+	padding-top: 50px; 
+	
+	
+	
+}
+
+	

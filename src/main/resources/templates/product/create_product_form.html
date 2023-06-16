@@ -1,0 +1,83 @@
+<html layout:decorate="~{layout}">
+<div  layout:fragment="content" class="container">
+
+	<br><br>
+	
+	<form th:object="${createProductForm}" method="post" enctype="multipart/form-data">
+	
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div th:replace="~{board/board_form_error :: formErrorsFragment}" /> 
+		
+		
+		
+		<div id=greedProduct>
+		
+			<div id="productPhoto">
+				
+				
+				상품메인사진 :
+				<!-- <input id="productIMG" type="file" name="file" />
+				 -->
+				<label for="productIMG">이미지</label>
+				<input type="file" id="productIMG" name="file" />
+				<div class="select_img"><img id="previewImage" th:src="${createProductForm.productIMG}" /></div>
+				
+				<span th:text="${#servletContext.getRealPath('/')}"></span>
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div id="productDetail1">
+				
+											
+				<li>상품명 :
+					<input type="text" th:field="*{productName}" />
+				</li>
+				
+	
+				<li>가격 :
+					<input type="number" th:field="*{productPrice}" />
+				</li>
+	
+				
+			</div>
+			
+			
+			
+			
+			
+		</div>
+		
+		<br>		
+		상품상세설명
+		<div id="writeContent">
+           
+            <textarea id="textarea_ck_test" th:field="*{productDetail}" ></textarea>
+ 
+        </div>
+		
+		
+		<div id="writeSubmit">
+		    <input type="submit" value="저장하기" >
+	    </div>
+	
+	
+	</form>
+
+
+</div>
+
+
+
+
+
+
+
+
+</html>
+	

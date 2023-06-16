@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+#registerWrite , #registerPw1 , #registerPw2 , #registerWrite {
+	
+	margin : auto;
+	
+}
+
+
+h3{
+	
+	text-align: center;
+	
+}
+
+#button {
+
+	text-align: center;
+	
+}
+
+.button {
+	
+	width : 500px;
+	
+}
+
+#registerPw1 {
+	
+	width : 500px;
+	height: 80px;
+}
+#registerPw1> input {
+	
+	width : 500px;
+	
+}
+
+
+#registerPw2 {
+	
+	width : 500px;
+	height: 80px;
+}
+
+#registerPw2 > input {
+	
+	width : 500px;
+
+}
+
+#registerWrite {
+	
+	width : 500px;
+	height: 80px;
+}
+
+#registerWrite > input {
+	
+	width : 500px;
+	
+}
+
+#registerRadio {
+	text-align: center;
+}
