@@ -2,6 +2,8 @@ package com.tjoeun.project.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,15 +41,36 @@ public class MainController {
 		
 		model.addAttribute("product" , productVO);
 		model.addAttribute("paging" , paging); 
-		
-		
 	
 		return "/main/main";
 	}
 
 	
+/*	@GetMapping("/sns")
+	public String sns() {
+		return "/login/sns";
+	}
 	
+	@GetMapping("/naverProxy")
+	public String naverProxy(@RequestParam("linking") String linking, HttpSession session) {
+		String path = "/oauth2/authorization/naver";
+		session.setAttribute("linkingOther2", linking);
+		return "redirect:"+path;
+	}
 	
+	@GetMapping("/googleProxy")
+	public String googleProxy(@RequestParam("linking") String linking, HttpSession session) {
+		String path = "/oauth2/authorization/google";
+		session.setAttribute("linkingOther2", linking);
+		return "redirect:"+path;
+	}
+	@GetMapping("/kakaoProxy")
+	public String kakaoProxy(@RequestParam("linking") String linking, HttpSession session) {
+		String path = "/oauth2/authorization/kakao";
+		session.setAttribute("linkingOther2", linking);
+		return "redirect:"+path;
+	}
+	*/
 	
 	@ResponseBody
 	@GetMapping("/board")

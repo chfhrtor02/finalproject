@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.tjoeun.project.link.CustomAuthenticationSuccess;
 import com.tjoeun.project.service.CustomOAuth2UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -80,10 +81,10 @@ public class SecurityConfig  {
 	                .invalidateHttpSession(true)
 	            .and()
 		            .oauth2Login()
+//		            .successHandler(new CustomAuthenticationSuccess())
 		            .defaultSuccessUrl("/")
 					.userInfoEndpoint()
 					.userService(customOAuth2UserService)
-					
 					;
 	        return http.build();
 		

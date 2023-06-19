@@ -1,0 +1,21 @@
+<html layout:decorate="~{layout}">
+<div  layout:fragment="content" class="container">
+<head>
+</head>
+<body>
+    <a>
+   		<!--  <a th:href="@{'/oauth2/authorization/naver?linking=true'}" class="btn btn-secondary active" role="button">-->
+   		  <a th:href="@{'/naverProxy?linking=true'}" class="btn btn-secondary active" role="button">
+			<img id="naver" th:src="@{'/icon/Naver.png'}" /></a>
+		<br>
+		<a th:href="@{'/googleProxy?linking=true'}" class="btn btn-secondary active" role="button">
+			<img id="google" th:src="@{'/icon/Google.png'}" /></a>
+		<br>
+		<a th:href="@{'/kakaoProxy?linking=true'}" class="btn btn-secondary active" role="button">
+			<img id="kakao" th:src="@{'/icon/Kakao.png'}" /></a>
+
+    </a>
+
+</body>
+</div>
+</html>

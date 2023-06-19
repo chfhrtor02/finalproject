@@ -119,7 +119,7 @@ public class MemberVO  extends BaseTimeEntity {
     public void setGender(Character inputGender) {
         // 값이 null이거나 공백일 때 기본값 입력
         if (inputGender == null || inputGender == ' ') {
-            this.gender = 'M'; // 'M'은 기본값으로 지정할 값입니다.
+            this.gender = '1'; // 'M'은 기본값으로 지정할 값입니다.
         } else {
             this.gender = inputGender;
         }
